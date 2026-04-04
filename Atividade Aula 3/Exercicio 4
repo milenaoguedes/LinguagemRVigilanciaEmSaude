@@ -1,1 +1,46 @@
+# Script CRUD de forma modular
 
+# Conexão do R ao Google Drive + Criação e edição de arquivos -------------------
+
+# Configurar o Ambiente
+getwd()
+setwd("C:/Users/Pessoa/Desktop/Pasta_de_Interesse")
+
+# Instalação dos pacotes
+install.packages("googledrive")
+install.packages("gargle")
+
+# Chama das bibliotecas
+library(googledrive)
+library(gargle)
+
+# Configuração de Autenticação (Acesso Permanente)
+# O uso do 'cache' permite que o acesso seja mantido sem novos logins.
+# Substitua pelo seu e-mail de usuário mencionado no requisito.
+drive_auth(email = "email@gmail.com", cache = ".secret")
+
+# 3. Definição da Pasta de Trabalho
+# ID extraído do link fornecido:
+id_pasta <- "ID extraído do link fornecido"
+
+# OPERAÇÕES CRUD do R para o Google Drive -----------------------------------------
+
+# A. CREATE: Criar um arquivo novo dentro da pasta alvo
+write.csv(iris, "meu_arquivo_r.csv") # Cria arquivo local
+drive_upload("meu_arquivo_r.csv", path = as_id(id_pasta), name = "Dados_Teste")
+
+# B. READ: Ler/Listar arquivos da pasta e baixar para leitura
+# Listar conteúdo
+arquivos_na_pasta <- drive_ls(as_id(id_pasta))
+print(arquivos_na_pasta)
+
+# Baixar para leitura
+drive_download("Dados_Teste", type = "csv", overwrite = TRUE)
+dados_lidos <- read.csv("Dados_Teste")
+
+# C. UPDATE: Editar/Atualizar (Renomear ou Sobrescrever)
+# Renomear arquivo
+drive_rename("Dados_Teste", name = "Dados_Teste_Atualizado")
+
+# D. DELETE: Deletar arquivo
+drive_rm("Dados_Teste_Atualizado")
