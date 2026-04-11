@@ -1,1 +1,267 @@
+# Curso em: https://github.com/milenaoguedes/copiacursobmclima/tree/main/modulos/modulo0-RBasico/scripts/arquivosParaGoogleColab
 
+# Exercitando os exemplos do Curso Básico
+
+# Módulo 0 - R Básico
+# CURSO BÁSICO DE LINGUAGEM R
+# --------------------------------------------------------
+# Arquivo: "Seu Espaço De Trabalho"
+# Usando o R:
+#Exemplo:
+x <- 2 + 4
+print(x)
+
+# Exercício: modifique o código de forma que ele imprima a multiplicação entre 2 e 4.
+x <- 2 * 4
+print(x)
+
+# --------------------------------------------------------
+# Arquivo: "Fundamentos"
+# Variáveis e constantes:
+
+# Exemplos:
+x<-5
+print(x)
+
+x<-10
+print(x)
+
+x<-4500
+print(x)
+
+PI <- 3.14159
+E <- 2.71828
+print(PI)
+print(E)
+
+# Operadores aritméticos
+# Exemplos:
+x <- 50
+y <- 17
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
+print(x %% y)
+print(x ^ y)
+
+# Exercício: Experimente trocar algumas vezes o valor de x e de y e rodar os comandos novamente.
+x <- 1200
+y <- 25
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
+print(x %% y)
+print(x ^ y)
+
+# Operadores relacionais:
+# Exemplos:
+print(x == y) # Igual a (==)
+print(x != y) # Diferente de (!=)
+print(x > y) # Maior que (>)
+print(x < y) # Menor que (<)
+print(x >= y) # Maior ou igual a (>=)
+print(x <= y) # Menor ou igual a (<=)
+
+# Exercício: Experimente atribuir o valor de x e de y antes das operações relacionais e rodar os comandos novamente.
+x <- 100
+y <- 5
+print(x == y)
+print(x != y)
+print(x > y)
+print(x < y)
+print(x >= y)
+print(x <= y)
+
+# Exemplo:
+print(x & y) # E (&)
+print(x | y) # OU (|)
+print(!y) # NOT (!)
+
+# Atribuindo um conjunto de dado a uma variável chamada 'z'
+z <- c(12,3,5,9)
+x %in% z # x pertence a y?
+y %in% z # y pertence a y?
+
+# Tipos e estruturas de dados - Datas e Horas:
+# Criando uma data e hora usando POSIXct
+data_hora_ct <- as.POSIXct("2023-04-18 14:30:00")
+class(data_hora_ct)
+
+# Criando uma data e hora usando POSIXlt
+data_hora_lt <- as.POSIXlt("2023-04-18 14:30:00")
+class(data_hora_lt)
+
+# Acessando componentes individuais
+data_hora_lt$year
+data_hora_lt$mon
+data_hora_lt$mday
+
+# ESTRUTURAS DE DADOS
+# Matrizes
+matriz <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+View(matriz)
+
+# Listas
+programas_saude <- list("Programa de Vacinação" = list(objetivo = "Aumentar a cobertura vacinal", publico_alvo = "Crianças e idosos", numero_de_participantes = 40L, orcamento = 35.5), "Programa de Prevenção ao Tabagismo" = list(objetivo = "Reduzir o número de fumantes",publico_alvo = "Adolescentes e adultos", numero_de_participantes = 60L, orcamento = 50.75), "Programa de Saúde Mental" = list(objetivo = "Melhorar o acesso a serviços de saúde mental", publico_alvo = "População em geral", numero_de_participantes = 50L, orcamento = 25.5))
+print(programas_saude)
+
+# Dataframes
+pacientes <- data.frame(nome = c("João Silva", "Maria Oliveira", "Pedro Souza", "Ana Pereira"), idade = c(45, 32, 58, 27), diagnostico = c("Diabetes", "Hipertensão", "Asma", "Gripe"), tratamento = c("Medicação", "Medicação", "Medicação", "Repouso"), data_admissao = as.Date(c("2023-04-01", "2023-03-15", "2023-02-20", "2023-04-05")))
+print(pacientes)
+
+# Exercício ..........
+# Programa 1
+programa_vacinação <- "Programa de Vacinação"
+objetivo_pv <- "Aumentar a cobertura vacinal"
+publico_pv <- "Crianças e idosos"
+orçamento_pv <- 2500000
+inicio_pv <- as.Date("2024-06-01")
+fim_pv <- as.Date("2025-12-01")
+
+# Programa 2
+programa_de_prevenção_tabagismo <- "Programa de Prevenção ao Tabagismo"
+objetivo_ppt <- "Reduzir o número de fumantes"
+publico_ppt <- "Adolescentes e adultos"
+orçamento_ppt <- 1500000
+inicio_ppt <- as.Date("2023-01-01")
+fim_ppt <- as.Date("2026-12-31")
+
+# Programa 3
+programa_saúde_mental <- "Programa de Saúde Mental"
+objetivo_psm <- "Melhorar o acesso a serviços de saúde mental"
+publico_psm <- "População em geral"
+orçamento_psm <- 1800000
+inicio_psm <- as.Date("2025-01-01")
+fim_psm <- as.Date("2027-12-31")
+
+# Lista
+programas <- list("Programa de Vacinação" = list(objetivo = objetivo_pv, publico = publico_pv, orçamento = orçamento_pv, inicio = inicio_pv, fim = fim_pv), list("Programa de Prevenção ao Tabagismo" = list(objetivo = objetivo_ppt, publico = publico_ppt, orçamento = orçamento_ppt, inicio = inicio_ppt, fim = fim_ppt), list("Programa de Saúde Mental" = list(objetivo = objetivo_psm, publico = publico_psm, orçamento = orçamento_psm, inicio = inicio_psm, fim = fim_psm))))
+print(programas)
+
+# Orçamento total
+orçamento_total <- orçamento_pv + orçamento_ppt + orçamento_psm
+print(orçamento_total)
+
+# Programa com o maior orçamento
+maior_orçamento <- max(c(orçamento_pv, orçamento_ppt, orçamento_psm))
+print(maior_orçamento)
+
+# Programas que estão em andamento atualmente
+hoje <- Sys.Date()
+em_andamento <- c()
+if (hoje >= inicio_pv & hoje <= fim_pv) {em_andamento <- c(em_andamento, programa_vacinação)}
+if (hoje >= inicio_ppt & hoje <= fim_ppt) {em_andamento <- c(em_andamento, programa_de_prevenção_tabagismo)}
+if (hoje >= inicio_psm & hoje <= fim_psm) {em_andamento <- c(em_andamento, programa_saúde_mental)}
+print(em_andamento)
+
+
+
+# --------------------------------------------------------
+# Arquivo: "Funções Pacotes"
+# Exercício 1 ..........
+notas <- c(8.5, 7.0, 9.2, 6.8, 8.0, 7.5, 9.0, 5.5, 8.8, 7.2)
+sort(notas)
+rev(notas)
+summary(notas)
+sd(notas)
+table(notas)
+
+notas_arredondadas <- round(notas, 0)
+print(notas_arredondadas)
+mean(notas_arredondadas)
+
+# Exercício 2 ..........
+data(mtcars)
+str(mtcars)
+summary(mtcars)
+summary(mtcars$mpg)
+sd(mtcars$mpg)
+sort(mtcars$hp)
+rev(mtcars$hp)
+seq(1,10,by =2)
+seq(5,15,by =3)
+rep(7,times = 4)
+rep("a",times =10)
+toupper(mtcars$cyl) # valores dessa variável para maiúsculas e minúsculas??
+tolower(mtcars$cyl) # valores dessa variável para maiúsculas e minúsculas??
+
+
+
+# --------------------------------------------------------
+#Arquivo: Fundamentos Estruturas De Decisão
+
+install.packages("magrittr")
+library(magrittr)
+
+install.packages("DBI")
+library(DBI)
+
+install.packages("RMySQL")
+library(RMySQL)
+
+install.packages("readxl")
+library(readxl)
+
+
+# Exercício 1 ..........
+
+# Carregue o pacote tidyverse
+install.packages("tidyverse")
+library(tidyverse)
+library(dplyr)
+
+# Carregue o pacote microdatasus
+install.packages("remotes")
+library(remotes)
+install.packages("devtools")
+library(devtools)
+remotes::install_github("rfsaldanha/microdatasus")
+library(microdatasus)
+
+# Fazendo a atividade:
+
+dados <- fetch_datasus(year_start = 2019,
+                       year_end = 2019,
+                       uf = "DF",
+                       information_system = "SINASC") %>%
+  process_sinasc() %>%
+  mutate(mes = lubridate::month(DTNASC)) %>%
+  group_by(mes) %>%
+  summarise(media_mensal_nascimentos = n())
+
+print(dados)
+
+# Exercício 2 ..........
+
+# Definir o diretório de trabalho (ajuste para o seu computador)
+setwd("C:\\Users\\Milena\\Desktop\\Atividade\\Teste R")
+
+# Criar o arquivo CSV vazio
+file.create("pacientes.csv")
+
+# Criar as variáveis com os dados
+nome_completo <- c("João da Silva",
+                   "Maria Souza Santos",
+                   "Pedro Henrique Alves",
+                   "Ana Clara Oliveira")
+
+data_do_atendimento <- c("2024-07-12",
+                         "2024-07-12",
+                         "2024-07-12",
+                         "2024-07-11")
+
+# Criar dataframe inicial
+dados <- data.frame(nome_completo, data_do_atendimento)
+
+# Separar primeiro e último nome
+dados_final <- data.frame( primeiro_nome = sapply(strsplit(as.character(dados$nome_completo), " "), `[`, 1), ultimo_nome   = sapply(strsplit(as.character(dados$nome_completo), " "), function(x) tail(x, 1)))
+
+# Escrever no CSV (2 colunas, como pedido)
+write.csv(dados_final, "pacientes.csv", row.names = FALSE)
+
+print(dados_final)
+
+dados_pacientes <- read.csv("pacientes.csv")
+View(dados_pacientes)
