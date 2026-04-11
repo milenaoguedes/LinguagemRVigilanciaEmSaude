@@ -1,0 +1,98 @@
+Crie o modelo RMarkdown para o seu Boletim
+
+Boletim_Sifilis_Gestante.Rmd
+
+...em produção:
+
+     |     |     |     |     |     |
+     V     V     V     V     V     V
+
+---
+title: "Boletim Epidemiológico – Sífilis em Gestantes no Brasil (2022-2024)"
+author: "[Seu nome / Instituição]"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: readable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# 1. Introdução
+A sífilis em gestante é um agravo de notificação compulsória que reflete diretamente a qualidade da assistência no pré-natal. Este boletim apresenta uma análise epidemiológica dos casos notificados no Brasil, abrangendo os anos de 2022 a 2024.
+
+# 2. Objetivos
+## 2.1 Objetivo geral
+Analisar o perfil epidemiológico e a tendência temporal da sífilis em gestantes no Brasil entre 2022 e 2024.
+
+## 2.2 Objetivos específicos
+Analisar a evolução dos casos ao longo dos três anos.
+
+Descrever o perfil sociodemográfico das gestantes (idade, raça/cor e escolaridade).
+
+Avaliar o momento do diagnóstico e o método de testagem.
+
+Verificar a adesão ao tratamento e o envolvimento do parceiro.
+
+# 3. Metodologia
+## 3.1 Tipo de estudo
+Estudo descritivo, retrospectivo de base populacional.
+
+## 3.2 Fonte de dados
+Sistema de Informação de Agravos de Notificação (SINAN) - DATASUS.
+
+## 3.3 Período de análise
+Janeiro de 2022 a dezembro de 2024.
+
+## 3.4 Variáveis analisadas
+Sociodemográficas: Idade, Sexo, Raça/Cor, Escolaridade.
+
+Assistência e Diagnóstico: Data de Diagnóstico, Tipo de Teste
+
+Tratamento: Esquema terapêutico da Gestante e do Parceiro
+
+
+# 4. Base de dados
+
+# Inserir aqui o código que consolida os 3 anos:
+# dados <- base_consolidada 
+
+# 5. Análise dos dados
+## 5.1 Evolução temporal (2022-2024)
+# Gráfico de tendência anual
+
+## 5.2 Perfil sociodemográfico
+# Tabela cruzada por Faixa Etária e Sexo
+
+## 5.3 Diagnóstico e Assistência
+# 
+
+## 5.4 Tratamento e Manejo
+# 
+
+# 6. Resultados
+Descrever aqui os principais achados, destacando o ano com maior incidência e os grupos mais vulneráveis identificados na análise.
+
+# 7. Discussão
+Interpretar o acesso ao diagnóstico e a qualidade do pré-natal. Discutir as barreiras no tratamento do parceiro.
+
+# 8. Conclusão
+Síntese sobre a persistência da sífilis como problema de saúde pública e a necessidade de intervenções focadas no pré-natal.
+
+# 9. Recomendações
+Ampliação do acesso à testagem rápida na atenção primária.
+
+Busca ativa de parceiros sexuais.
+
+Monitoramento contínuo dos indicadores de tratamento do parceiro.
+
+# 10. Referências
+...
+
+...
+
+...
