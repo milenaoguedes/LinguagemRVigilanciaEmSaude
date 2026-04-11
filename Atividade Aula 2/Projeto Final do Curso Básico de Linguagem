@@ -1,1 +1,33 @@
+# Projeto Final do Curso Básico - Linguagem R
 
+# Suponha que você é um gestor de saúde do estado de TO e precisa calcular a taxa de nascidos vivos para o ano de 2019.
+# Construa um script em R que solucione o cenário proposto e inclua as cinco etapas de uma pipeline de dados.
+# Você deve utilizar o pacote microdatasus para coletar os dados e preprocessar os dados.
+
+# Carregue o pacote tidyverse
+install.packages("tidyverse")
+library(tidyverse)
+
+# Carregue o pacote microdatasus
+install.packages("remotes")
+library(remotes)
+install.packages("devtools")
+library(devtools)
+remotes::install_github("rfsaldanha/microdatasus")
+library(microdatasus)
+
+# Script completo com pipeline
+taxa_nascidos_TO2019 <- fetch_datasus(year_start = 2019,
+                                      year_end = 2019,
+                                      uf = "TO",
+                                      information_system = "SINASC") %>%
+  process_sinasc() %>%
+  summarise(total_nascidos = n()) %>%
+  mutate(
+    populacao = 1572866,
+    taxa_por_mil = (total_nascidos / populacao) * 1000
+  )
+
+print(taxa_nascidos_TO2019)
+
+# Interpretando o resultado: No estado do Tocantins, em 2019, foram registrados 24.449 nascidos vivos. Considerando uma população estimada de 1.572.866 habitantes, a taxa de nascidos vivos foi de 15,5 por mil habitantes.
