@@ -1,7 +1,8 @@
-# Script CRUD de forma modular
+# Conexão do R ao Google Drive + Criação e edição de arquivos 
 
-# Conexão do R ao Google Drive + Criação e edição de arquivos -------------------
+# CRUD - Create (Criar), Read (Ler), Update (Atualizar) e Delete (Excluir)
 
+# Script CRUD de forma modular 
 # Configurar o Ambiente
 getwd()
 setwd("C:/Users/Pessoa/Desktop/Pasta_de_Interesse")
