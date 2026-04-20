@@ -1,1 +1,19 @@
+# Função "carregar_csv_drive", abre um arquivo csv do Google Drive para o R
+# Como a função funciona: localiza um arquivo a partir de um "caminho" que será informado por você. Este arquivo é baixado no pc de forma temporária, é lida pelo R e salvo em um objeto e, posteriormente o arquivo temporário do pc é excluído, ficando apenas no R
 
+carregar_csv_drive <- function(caminho) {
+  arquivo_temp <- tempfile(fileext = ".csv")
+  drive_download(caminho, path = arquivo_temp, overwrite = TRUE)
+  dados <- read.csv(arquivo_temp)
+  file.remove(arquivo_temp)
+  return(dados)
+}
+
+# Agora a função está disponível!
+dados <- carregar_csv_drive("pasta/subpasta/arquivo.csv")
+#.................................... ↑↑ caminho informado por você
+
+#OBS: Para esta função rodar, deve ser necessário utilizar o pacote "googledrive":
+# install.packages("googledrive")
+# library(googledrive)
+# e utilizada a função "drive_auth()" para liberar o acesso a conta do Google Drive
