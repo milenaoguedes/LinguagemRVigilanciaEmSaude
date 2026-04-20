@@ -1,0 +1,104 @@
+# Função "comparar_dataframes", compara se um dataframe é semelhante a outro em relação as colunas e tipo das variáveis de cada coluna
+# Como a função funciona: compara o número e nome das colunas de cada dataframe, o tipo das colunas e identifica quando há divergências.
+
+# Avaliando o tipo de cada coluna
+
+# Função corrigida que compara dois dataframes em detalhe
+comparar_dataframes <- function(df1, df2, nome1 = "Base1", nome2 = "Base2") {
+  
+  cat("\n🔍 COMPARANDO:", nome1, "vs", nome2, "\n")
+  cat("============================================\n")
+  
+  # 1. Comparar número de colunas
+  ncol1 <- ncol(df1)
+  ncol2 <- ncol(df2)
+  cat("\n📊 Número de colunas:\n")
+  cat("  ", nome1, ":", ncol1, "colunas\n")
+  cat("  ", nome2, ":", ncol2, "colunas\n")
+  
+  if(ncol1 != ncol2) {
+    cat("  ⚠️ DIFERENÇA:", abs(ncol1 - ncol2), "colunas a mais em", 
+        ifelse(ncol1 > ncol2, nome1, nome2), "\n")
+  }
+  
+  # 2. Comparar nomes das colunas
+  col1 <- names(df1)
+  col2 <- names(df2)
+  
+  cat("\n📝 Nomes das colunas:\n")
+  
+  # Inicializar variáveis
+  apenas_1 <- c()
+  apenas_2 <- c()
+  
+  if(identical(col1, col2)) {
+    cat("  ✅ Nomes IDÊNTICOS\n")
+  } else {
+    cat("  ⚠️ Nomes DIFERENTES\n")
+    
+    # Colunas apenas na primeira base
+    apenas_1 <- setdiff(col1, col2)
+    if(length(apenas_1) > 0) {
+      cat("     Apenas em", nome1, ":", paste(apenas_1, collapse = ", "), "\n")
+    }
+    
+    # Colunas apenas na segunda base
+    apenas_2 <- setdiff(col2, col1)
+    if(length(apenas_2) > 0) {
+      cat("     Apenas em", nome2, ":", paste(apenas_2, collapse = ", "), "\n")
+    }
+  }
+  
+  # 3. Comparar tipos das colunas (para colunas comuns)
+  colunas_comuns <- intersect(col1, col2)
+  
+  cat("\n🔧 Divergências nos Tipos das colunas comuns:\n")
+  
+  tipos_diferentes <- c()
+  
+  for(col in colunas_comuns) {
+    tipo1 <- class(df1[[col]])[1]
+    tipo2 <- class(df2[[col]])[1]
+    
+    if(tipo1 != tipo2) {
+      tipos_diferentes <- c(tipos_diferentes, col)
+      cat("  ⚠️", col, ":", tipo1, "vs", tipo2, "\n")
+    }
+  }
+  
+  if(length(tipos_diferentes) == 0) {
+    cat("  ✅ Todos os tipos são consistentes\n")
+  }
+  
+  # 4. Sumário
+  cat("\n📋 RESUMO:\n")
+  if(identical(col1, col2) && length(tipos_diferentes) == 0) {
+    cat("  ✅ Bases COMPATÍVEIS para união direta!\n")
+  } else {
+    cat("  ⚠️ Bases têm INCOMPATIBILIDADES. Verifique acima.\n")
+  }
+  
+  cat("\n")
+  
+  # Retornar lista com resultados
+  return(list(
+    colunas_iguais = identical(col1, col2),
+    tipos_consistentes = length(tipos_diferentes) == 0,
+    colunas_apenas_1 = apenas_1,
+    colunas_apenas_2 = apenas_2,
+    tipos_diferentes = tipos_diferentes
+  ))
+}
+
+# ---------------------------------------------------------------------------
+# Agora a função está disponível!
+comparar_dataframes(nomedodataframe1, nomedodataframe2, "título1", "título2")
+# nomedodataframe 1 e 2: nome dos objetos
+# título 1 e 2: Título que deseja que apareça em cada análise
+
+
+# ---------------------------------------------------------------------------
+# Exemplo usando a função "comparar_dataframes"
+comparar_dataframes(dados22, dados23, "2022", "2023")
+comparar_dataframes(dados23, dados24, "2023", "2024")
+
