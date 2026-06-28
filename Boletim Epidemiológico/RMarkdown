@@ -1,7 +1,7 @@
 ---
 title: "Boletim epidemiológico - Sífilis em Gestante"
 subtitle: "Perfil epidemiológico da Sífilis em Gestantes no Distrito Federal, 2022-2024"
-author: "Milena Guedes - Residente de Vigilância em Saúde"
+author: "[Autor]"
 
 output:
   html_document:
@@ -283,7 +283,7 @@ O processamento, a análise estatística e a visualização dos dados foram real
 
 
 ```{r upload-dados, include=FALSE}
-setwd("C:/Users/Milena/Desktop/Milena_Boletim_R")
+setwd("[Caminho da pasta de trabalho, ex:C:/Users/XXX/Desktop/Boletim]")
 
 dados24 <- read_csv("SIFGBR24.csv")
 dados23 <- read_csv("SIFGBR23.csv")
