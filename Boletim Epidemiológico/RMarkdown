@@ -1,0 +1,969 @@
+---
+title: "Boletim epidemiológico - Sífilis em Gestante"
+subtitle: "Perfil epidemiológico da Sífilis em Gestantes no Distrito Federal, 2022-2024"
+author: "Milena Guedes - Residente de Vigilância em Saúde"
+
+output:
+  html_document:
+    theme: flatly
+    highlight: tango
+    number_sections: true
+    df_print: kable
+  word_document:
+    number_sections: true
+    reference_docx: null
+---
+
+
+```{css, echo=FALSE}
+/* ── Paleta verde institucional ── */
+:root {
+  --verde-escuro:  #1B5E20;
+  --verde-medio:   #2E7D32;
+  --verde-claro:   #43A047;
+  --verde-menta:   #A5D6A7;
+  --verde-fundo:   #E8F5E9;
+  --branco:        #FFFFFF;
+  --cinza-texto:   #37474F;
+}
+
+/* ── Corpo geral ── */
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14.5px;
+  color: var(--cinza-texto);
+  background-color: #F9FBF9;
+  line-height: 1.75;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: justify;
+  text-indent: 15px;
+}
+
+/* ── Cabeçalho do documento ── */
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--branco);
+  border-bottom: 4px solid var(--verde-claro);
+  padding-bottom: 10px;
+  line-height: 1.3;
+}
+.subtitle {
+  font-size: 1.7rem;
+  color: var(--verde-medio);
+  font-weight: 400;
+  margin-top: 4px;
+}
+.author, .date {
+  color: #555;
+  font-size: 1.3rem;
+}
+
+/* ── Sumário embutido (estilo Word) ── */
+#TOC {
+  background: var(--verde-fundo);
+  border: 1px solid var(--verde-menta);
+  border-left: 5px solid var(--verde-escuro);
+  border-radius: 4px;
+  padding: 16px 22px;
+  font-size: 1.3rem;
+  margin: 1.5rem 0 2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+#TOC ul { padding-left: 18px; margin: 4px 0; }
+#TOC li { margin: 3px 0; }
+#TOC a { color: var(--verde-escuro); text-decoration: none; }
+#TOC a:hover { color: var(--verde-claro); text-decoration: underline; }
+#TOC > ul > li > a { font-weight: 700; }
+#TOC > ul > li > ul > li > a { font-weight: 500; }
+
+/* ── Seções ── */
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--branco);
+  background: var(--verde-escuro);
+  padding: 10px 18px;
+  border-radius: 5px;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--verde-escuro);
+  border-left: 5px solid var(--verde-claro);
+  padding-left: 12px;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--verde-medio);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Caixa de interpretação ── */
+.interpretacao {
+  background: #FAFAFA;
+  border: 1px dashed #A5D6A7;
+  border-left: 4px solid var(--verde-claro);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin: 1.2rem 0 1.8rem 0;
+  font-size: 1.3rem;
+  color: #555;
+  font-style: italic;
+  min-height: 60px;
+}
+.interpretacao::before {
+  content: "✏️ Interpretação: ";
+  font-weight: 700;
+  font-style: normal;
+  color: var(--verde-medio);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.3rem;
+}
+
+/* ── Caixa de destaque ── */
+.destaque {
+  background: var(--verde-fundo);
+  border-left: 4px solid var(--verde-claro);
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+
+/* ── Tabelas ── */
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem 0;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-radius: 6px;
+  overflow: hidden;
+}
+thead tr {
+  background: var(--verde-escuro);
+  color: var(--branco);
+  text-align: center;
+}
+thead th { padding: 10px 14px; font-weight: 600; }
+tbody tr:nth-child(even) { background-color: var(--verde-fundo); }
+tbody tr:hover { background-color: var(--verde-menta); transition: background 0.2s; }
+tbody td { padding: 8px 14px; border-bottom: 1px solid #dcedc8; }
+tfoot tr { background: #C8E6C9; font-weight: bold; }
+
+caption {
+  caption-side: top;
+  font-size: 1.3rem;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+/* ── Gráficos ── */
+img { border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.10); }
+
+/* ── Rodapé ── */
+.footnotes {
+  font-size: 1.3rem;
+  color: #888;
+  border-top: 1px solid #ccc;
+  margin-top: 2rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #C8E6C9;
+  margin: 2rem 0;
+}
+```
+
+```{r setup, include=FALSE}
+# Detecta o formato de saída para ajustar comportamento conforme o destino
+is_html   <- knitr::is_html_output()
+is_word   <- knitr::pandoc_to() == "docx"
+is_latex  <- knitr::is_latex_output()
+
+knitr::opts_chunk$set(
+  echo    = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  # fig.align não é suportado em docx; usa o padrão no Word e "center" nos demais
+  fig.align  = if (is_word) "default" else "center",
+  fig.width  = 7,
+  fig.height = 4.5,
+  dpi        = 150
+)
+```
+
+```{r pacotes, include=FALSE}
+library(readr)
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(kableExtra)
+```
+
+```{r helper-tabela, include=FALSE}
+# Formata a tabela de acordo com o formato de saída.
+# - HTML : tabela estilizada (bootstrap + cores institucionais)
+# - Word : tabela NATIVA do Word (kable_styling com cores é HTML e quebra no docx)
+# - PDF  : tabela LaTeX com booktabs
+formatar_tabela <- function(tabela, legenda) {
+  alinhamento <- c("l", rep("c", ncol(tabela) - 1))
+
+  if (is_html) {
+    kable(tabela, caption = legenda, align = alinhamento) %>%
+      kable_styling(
+        bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+        full_width = TRUE
+      ) %>%
+      row_spec(0, background = "#1B5E20", color = "white", bold = TRUE) %>%
+      row_spec(nrow(tabela), bold = TRUE, background = "#C8E6C9")
+  } else if (is_latex) {
+    kable(tabela, caption = legenda, align = alinhamento, booktabs = TRUE) %>%
+      kable_styling(latex_options = c("striped", "hold_position"))
+  } else {
+    # Word (docx) e demais: tabela nativa, sem estilo HTML
+    kable(tabela, caption = legenda, align = alinhamento)
+  }
+}
+```
+
+
+------------------------------------------------------------------------
+
+::: destaque
+**Fonte dos dados:** Ministério da Saúde, Sistema de Informação de Agravos de Notificação (SINAN). Dados extraídos via portal de Transferência de Arquivos do **DATASUS** em 02/05/2026. *Dados preliminares sujeitos a alterações.*
+:::
+
+---
+
+# Sumário
+
+::: {.summary-box}
+3. [Levantamento de dados](#levantamento-de-dados)
+4. [Faixa Etária](#faixa-etária)
+5. [Raça/Cor](#raca-cor)
+6. [Escolaridade](#escolaridade)
+7. [Trimestre Gestacional de Diagnóstico](#trimestre-gestacional-de-diagnóstico)
+8. [Realização de Testes Diagnósticos durante o Pré-Natal](#realizacao-de-testes-diagnosticos-durante-o-pre-natal)
+9. [Classificação Clínica](#classificação-clínica)
+10. [Esquema de Tratamento](#esquema-de-tratamento)
+11. [Considerações Finais](#considerações-finais)
+12. [Referências](#referências)
+:::
+
+---
+
+# **Introdução**
+
+A sífilis gestacional representa um importante problema de saúde pública no Brasil, sendo uma das principais causas de sífilis congênita — infecção vertical com potencial impacto grave sobre o concepto. O Distrito Federal, apesar de apresentar indicadores socioeconômicos acima da média nacional, não está isento das desigualdades que condicionam a vulnerabilidade ao agravo, tornando-se fundamental o monitoramento contínuo da situação epidemiológica local.
+
+Este boletim tem como objetivo descrever o perfil epidemiológico dos casos notificados de sífilis em gestantes no Distrito Federal entre 2022 e 2024, com base nos dados do Sistema de Informação de Agravos de Notificação (Sinan). São analisadas características como faixa etária, raça/cor, escolaridade, trimestre gestacional de diagnóstico, realização de testes diagnósticos, classificação clínica e esquema de tratamento.
+
+
+------------------------------------------------------------------------
+
+# **Levantamento de dados**
+
+Os dados analisados neste boletim foram obtidos do SINAN Net e compreendem todos os casos de sífilis em gestantes notificados no Distrito Federal (UF 53) entre 2022 e 2024. No total, foram identificadas **3.814 notificações**, sendo *1.309* em 2022, *1.667* em 2023 e *838* em 2024. O crescimento observado entre 2022 e 2023 pode refletir tanto aumento real da incidência quanto melhora na cobertura e sensibilidade do sistema de notificação. A redução em 2024 deve ser interpretada com cautela, pois pode indicar atraso no encerramento de fichas de casos notificados próximo ao fechamento do banco de dados anual. As análises contemplam variáveis sociodemográficas (faixa etária, raça/cor e escolaridade) e clínico-epidemiológicas (trimestre gestacional de diagnóstico, realização de testes, classificação clínica e esquema de tratamento).
+
+O processamento, a análise estatística e a visualização dos dados foram realizados no software RStudio. Adicionalmente, ferramentas de Inteligência Artificial Generativa (como Gemini, Claude e ChatGPT) foram utilizadas de forma complementar no auxílio à coautoria do código em R, revisão da sintaxe dos scripts e suporte na redação técnica das análises epidemiológicas.
+
+
+```{r upload-dados, include=FALSE}
+setwd("C:/Users/Milena/Desktop/Milena_Boletim_R")
+
+dados24 <- read_csv("SIFGBR24.csv")
+dados23 <- read_csv("SIFGBR23.csv")
+dados22 <- read_csv("SIFGBR22.csv")
+```
+
+```{r filtro-df, include=FALSE}
+dados24 <- dados24 %>% filter(SG_UF_NOT == "53")
+dados23 <- dados23 %>% filter(SG_UF_NOT == "53")
+dados22 <- dados22 %>% filter(SG_UF_NOT == "53")
+```
+
+```{r padroniza-datas, include=FALSE}
+dados24 <- dados24 %>% mutate(DT_DIAG = as.Date(parse_date_time(DT_DIAG, c("ymd","dmy","ymd HMS"))))
+dados23 <- dados23 %>% mutate(DT_DIAG = as.Date(parse_date_time(DT_DIAG, c("ymd","dmy","ymd HMS"))))
+dados22 <- dados22 %>% mutate(DT_DIAG = as.Date(parse_date_time(DT_DIAG, c("ymd","dmy","ymd HMS"))))
+```
+
+```{r unifica-bancos, include=FALSE}
+banco_sifilis_21a24 <- bind_rows(
+  "2024" = dados24,
+  "2023" = dados23,
+  "2022" = dados22,
+  .id = "ANO_BANCO"
+)
+```
+
+------------------------------------------------------------------------
+
+# Faixa Etária
+
+Os dados de sífilis em gestantes no Distrito Federal evidenciam que a infecção se concentra predominantemente em mulheres jovens, a faixa etária de **20 a 29 anos** foi consistentemente predominante nos três anos (Tabela 1), concentrando aproximadamente 60% de todos os casos (60,3% em 2022; 61,1% em 2023; 60,6% em 2024). A segunda faixa mais acometida foi a de 30 a 39 anos, com crescimento progressivo ao longo do período (18,1% → 19,1% → 20,6%), sugerindo ampliação da faixa de exposição entre mulheres em idade reprodutiva mais avançada (Figura 1). Chama atenção a presença de adolescentes de 10 a 14 anos entre os casos notificados — embora numericamente pequena (25 casos no período), esse grupo é de alta vulnerabilidade e exige atenção diferenciada nas políticas de saúde sexual e reprodutiva.
+
+## Distribuição absoluta por ano
+
+```{r tabela-idade-abs, include=FALSE}
+tabela_idade_dados <- banco_sifilis_21a24 %>%
+  mutate(NU_IDADE_N = as.numeric(NU_IDADE_N)) %>%
+  filter(NU_IDADE_N >= 4000 & NU_IDADE_N < 5000) %>%
+  mutate(
+    Idade_Real  = NU_IDADE_N %% 1000,
+    Faixa_Texto = case_when(
+      Idade_Real >= 10 & Idade_Real <= 14 ~ "10 a 14 anos",
+      Idade_Real >= 15 & Idade_Real <= 19 ~ "15 a 19 anos",
+      Idade_Real >= 20 & Idade_Real <= 29 ~ "20 a 29 anos",
+      Idade_Real >= 30 & Idade_Real <= 39 ~ "30 a 39 anos",
+      Idade_Real >= 40 & Idade_Real <= 49 ~ "40 a 49 anos",
+      Idade_Real >= 50 & Idade_Real <= 59 ~ "50 a 59 anos",
+      TRUE ~ "Ignorado/Outros"
+    ),
+    Faixa_Etaria = factor(
+      Faixa_Texto,
+      levels = c("10 a 14 anos","15 a 19 anos","20 a 29 anos",
+                 "30 a 39 anos","40 a 49 anos","50 a 59 anos")
+    )
+  ) %>%
+  filter(!is.na(Faixa_Etaria))
+
+tabela_idade_final <- tabela_idade_dados %>%
+  janitor::tabyl(Faixa_Etaria, ANO_BANCO) %>%
+  janitor::adorn_totals("row", name = "**Total Geral**") %>%
+  janitor::adorn_totals("col", name = "**Total Período**")
+```
+
+Tabela 1. Distribuição absoluta de casos de sífilis em gestantes, segundo faixa etária. Distrito Federal, 2022–2024.
+
+```{r exibe-tabela-idade}
+tabela_idade_final
+```
+
+## Proporção por faixa etária
+
+A análise proporcional reforça a estabilidade do perfil etário ao longo dos três anos, a faixa de 20 a 29 anos manteve-se em torno de 60% das notificações anuais. O grupo de 15 a 19 anos, embora com redução proporcional (19,3% em 2022 para 16,5% em 2024), ainda representa uma parcela expressiva, indicando a persistência da vulnerabilidade entre adolescentes. A faixa de 30 a 39 anos apresentou aumento gradual em sua participação relativa, o que pode refletir tanto aumento real de casos nesse grupo quanto melhora na captação diagnóstica durante o pré-natal tardio (Figura 1). A distribuição estável entre os anos sugere que o perfil etário das gestantes com sífilis no DF não sofreu alterações estruturais relevantes no período analisado.
+
+```{r proporcao-idade, include=FALSE}
+dados_proporcao_idade <- banco_sifilis_21a24 %>%
+  mutate(NU_IDADE_N = as.numeric(NU_IDADE_N)) %>%
+  filter(NU_IDADE_N >= 4000 & NU_IDADE_N < 5000) %>%
+  mutate(
+    Idade_Real  = NU_IDADE_N %% 1000,
+    Faixa_Texto = case_when(
+      Idade_Real >= 10 & Idade_Real <= 14 ~ "10 a 14 anos",
+      Idade_Real >= 15 & Idade_Real <= 19 ~ "15 a 19 anos",
+      Idade_Real >= 20 & Idade_Real <= 29 ~ "20 a 29 anos",
+      Idade_Real >= 30 & Idade_Real <= 39 ~ "30 a 39 anos",
+      Idade_Real >= 40 & Idade_Real <= 49 ~ "40 a 49 anos",
+      Idade_Real >= 50 & Idade_Real <= 59 ~ "50 a 59 anos",
+      TRUE ~ "Ignorado/Outros"
+    ),
+    Faixa_Etaria = factor(
+      Faixa_Texto,
+      levels = c("10 a 14 anos","15 a 19 anos","20 a 29 anos",
+                 "30 a 39 anos","40 a 49 anos","50 a 59 anos")
+    )
+  ) %>%
+  filter(!is.na(Faixa_Etaria)) %>%
+  group_by(ANO_BANCO, Faixa_Etaria) %>%
+  summarise(Casos = n(), .groups = "drop_last") %>%
+  mutate(Porcentagem = (Casos / sum(Casos)) * 100) %>%
+  ungroup()
+```
+
+
+Figura 1. Proporção de casos notificados de sífilis em gestante, segundo faixa
+etária. Distrito Federal, 2022–2024.
+
+```{r grafico-idade-atualizado, fig.cap=" "}
+# Carrega os pacotes necessários para garantir a reprodutibilidade
+library(ggplot2)
+library(dplyr)
+
+# Definição da paleta de cores institucional para as faixas etárias
+paleta_idade <- c(
+  "10 a 14 anos" = "#91e8e1", 
+  "15 a 19 anos" = "#8085e8",
+  "20 a 29 anos" = "#e4d354", 
+  "30 a 39 anos" = "#f15c80",  
+  "40 a 49 anos" = "#f7a35c",
+  "50 a 59 anos" = "#90ed7d"  
+)
+
+# Construção do gráfico de distribuição proporcional empilhado
+ggplot(dados_proporcao_idade, aes(x = factor(ANO_BANCO), y = Porcentagem, fill = Faixa_Etaria)) +
+  # Criação das colunas empilhadas com bordas brancas para melhor delimitação visual
+  geom_col(position = position_stack(rev = TRUE), width = 0.55, color = "white", linewidth = 0.3) +
+  
+  # ADAPTAÇÃO: Remoção do filtro 'Porcentagem > 2' para exibir todas as faixas e redução do 'size'
+  geom_text(
+    aes(label = paste0(format(round(Porcentagem, 1), nsmall = 1, decimal.mark = ","), "%")),
+    position = position_stack(vjust = 0.5, rev = TRUE),
+    size = 2.8,          # Reduzido de 3.2 para 2.8 para caber em fatias menores
+    color = "black",     # Alterado para preto para garantir contraste em fundos muito claros (como o #91e8e1)
+    fontface = "bold"
+  ) +
+  
+  # Escalas e formatações de eixos
+  scale_fill_manual(values = paleta_idade, name = NULL) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  
+  # Rótulos textuais e notas de rodapé essenciais para a Vigilância
+  labs(
+    x = NULL, 
+    y = "Proporção (%)", 
+    caption = "DATASUS, Sinan - Dados provisórios sujeitos à atualização e extraídos em 02/05/2026."
+  ) +
+  
+  # Aplicação do tema minimalista institucional
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.caption       = element_text(color = "#777", size = 8, hjust = 1),
+    legend.position    = "bottom",
+    legend.text        = element_text(size = 9),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_text(face = "bold", size = 11)
+  ) +
+  # Organização da legenda em duas linhas para não comprometer a largura útil da página HTML
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+
+------------------------------------------------------------------------
+
+# Raça/Cor
+
+A análise segundo raça/cor revela uma marcante disparidade no Distrito Federal, onde as gestantes autodeclaradas *pardas* concentram o maior volume de notificações, o grupo respondeu por 56,8% (744 casos) em 2022, 62,9% (1.048) em 2023 e 67,7% (567) em 2024, crescimento proporcional consistente ao longo dos anos analisdos. Gestantes brancas ocuparam a segunda posição (15,9%, 19,6% e 17,1%, respectivamente), seguidas por pretas (7,3%, 8,6% e 7,4%). Merece destaque a expressiva queda na proporção de registros classificados como *ignorados/não informados*, de 18,8% em 2022 para 6,9% em 2024, indicando melhora gradual na qualidade do preenchimento da ficha de notificação. A predominância de mulheres pardas e pretas (população negra) entre os casos reflete as iniquidades raciais em saúde no Brasil, em especial as desigualdades no acesso ao pré-natal de qualidade e à atenção básica.
+
+
+```{r proporcao-raca, include=FALSE}
+## Proporção por raça/cor
+
+dados_proporcao_raca <- banco_sifilis_21a24 %>%
+  mutate(
+    Raca_Texto = case_match(
+      as.character(CS_RACA),
+      "1" ~ "Branca", "2" ~ "Preta", "3" ~ "Amarela",
+      "4" ~ "Parda",  "5" ~ "Indígena",
+      .default = "Ignorado/Não Informado"
+    ),
+    Raca_Cor = factor(
+      Raca_Texto,
+      levels = c("Ignorado/Não Informado","Branca","Preta","Amarela","Parda","Indígena")
+    )
+  ) %>%
+  group_by(ANO_BANCO, Raca_Cor) %>%
+  summarise(Casos = n(), .groups = "drop_last") %>%
+  mutate(Porcentagem = (Casos / sum(Casos)) * 100) %>%
+  ungroup()
+```
+
+
+Figura 2. Proporção de casos notificados de sífilis em gestante, segundo raça/cor. Distrito Federal, 2022–2024.
+
+```{r grafico-raca-atualizado, fig.cap=" "}
+# Carrega as bibliotecas essenciais para manipulação e visualização
+library(ggplot2)
+library(dplyr)
+
+# ── 1. DEFINIÇÃO DA PALETA INSTITUCIONAL DE RAÇA/COR ──
+paleta_raca <- c(
+  "Ignorado/Não Informado" = "#BDBDBD", 
+  "Branca"                 = "#8085e8",
+  "Preta"                  = "#e4d354", 
+  "Amarela"                = "#f15c80",  
+  "Parda"                  = "#f7a35c",
+  "Indígena"               = "#90ed7d"  
+)
+
+# ── 2. CONSTRUÇÃO DO GRÁFICO DE COLUNAS EMPILHADAS ──
+ggplot(dados_proporcao_raca, aes(x = factor(ANO_BANCO), y = Porcentagem, fill = Raca_Cor)) +
+  # Gera as barras empilhadas com linhas divisórias brancas e largura otimizada
+  geom_col(position = position_stack(rev = TRUE), width = 0.55, color = "white", linewidth = 0.3) +
+  
+  # CORREÇÃO DOS RÓTULOS: Exibe todas as proporções sem filtros e ajusta tamanho/cor
+  geom_text(
+    aes(label = paste0(format(round(Porcentagem, 1), nsmall = 1, decimal.mark = ","), "%")),
+    position = position_stack(vjust = 0.5, rev = TRUE),
+    size = 2.8,          # Tamanho reduzido (de 3.2 para 2.8) para evitar cortes em fatias pequenas
+    color = "black",     # Cor preta para legibilidade universal sobre as cores de preenchimento
+    fontface = "bold"    # Negrito mantido para destaque analítico
+  ) +
+  
+  # ── 3. FORMATAÇÃO DE ESCALAS E EIXOS ──
+  scale_fill_manual(values = paleta_raca, name = NULL) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  
+  # Elementos de texto essenciais para a reprodutibilidade e notas de rodapé da Vigilância
+  labs(
+    x = NULL, 
+    y = "Proporção (%)", 
+    caption = "DATASUS, Sinan - Dados provisórios sujeitos à atualização e extraídos em 02/05/2026."
+  ) +
+  
+  # ── 4. CUSTOMIZAÇÃO DO TEMA INSTITUCIONAL ──
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.caption       = element_text(color = "#777", size = 8, hjust = 1),
+    legend.position    = "bottom",
+    legend.text        = element_text(size = 9),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_text(face = "bold", size = 11)
+  ) +
+  # Distribui as categorias da legenda em duas linhas horizontais no rodapé do gráfico
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+
+------------------------------------------------------------------------
+
+# Escolaridade
+
+  O perfil sociodemográfico das gestantes notificadas aponta para uma concentração expressiva de casos em mulheres com ensino médio completo e ensino fundamental incompleto (Tabela 3). A baixa escolaridade atua frequentemente como um marcador de vulnerabilidade social, estando historicamente associada a menores oportunidades de acesso à informação, menor percepção de risco e barreiras na utilização dos serviços de saúde. O elevado percentual de dados anotados como "Ignorado" para a variável escolaridade continua a se estruturar como um desafio crônico para a vigilância epidemiológica do DF (Figura 3), indicando a necessidade de sensibilizar os profissionais de saúde quanto à importância do preenchimento completo do prontuário e da ficha de notificação.
+
+A escolaridade constitui uma das variáveis com maior proporção de dados ignorados no período: 54,6% em 2022, 47,2% em 2023 e 47,4% em 2024, evidenciando limitação importante na completude das notificações e restringindo interpretações conclusivas. Entre os casos com escolaridade informada, o **ensino médio completo** foi o nível mais frequente nos três anos (19,6%, 24,7% e 21,8%), seguido pelo ensino médio incompleto (9,9%, 9,9% e 10,4%) e pelo ensino fundamental incompleto (7,1%, 7,9% e 9,3%). A baixa participação de gestantes com ensino superior, completo ou incompleto, sugere concentração dos casos nos estratos de menor escolaridade, o que é consistente com maior vulnerabilidade socioeconômica e menor acesso à informação sobre prevenção de IST e à atenção pré-natal precoce.
+
+
+```{r tabela-escol, include=FALSE}
+## Distribuição absoluta por ano
+tabela_escol_dados <- banco_sifilis_21a24 %>%
+  mutate(CS_ESCOL_N = as.numeric(CS_ESCOL_N)) %>%
+  mutate(
+    Escolaridade_Texto = case_match(
+      CS_ESCOL_N,
+      0        ~ "Analfabeto",
+      c(1,2,3) ~ "Ensino fundamental incompleto",
+      4        ~ "Ensino fundamental completo",
+      5        ~ "Ensino médio incompleto",
+      6        ~ "Ensino médio completo",
+      7        ~ "Educação superior incompleta",
+      8        ~ "Educação superior completa",
+      10       ~ "Não se aplica",
+      .default  = "Ignorado"
+    ),
+    Escolaridade = factor(
+      Escolaridade_Texto,
+      levels = c("Ignorado","Analfabeto","Ensino fundamental incompleto",
+                 "Ensino fundamental completo","Ensino médio incompleto",
+                 "Ensino médio completo","Educação superior incompleta",
+                 "Educação superior completa","Não se aplica")
+    )
+  )
+
+tabela_escol_final <- tabela_escol_dados %>%
+  janitor::tabyl(Escolaridade, ANO_BANCO) %>%
+  janitor::adorn_totals("row", name = "**Total Geral**") %>%
+  janitor::adorn_totals("col", name = "**Total Período**")
+```
+
+
+## Proporção por escolaridade
+
+```{r proporcao-escol, include=FALSE}
+dados_proporcao_escol <- tabela_escol_dados %>%
+  group_by(ANO_BANCO, Escolaridade) %>%
+  summarise(Casos = n(), .groups = "drop_last") %>%
+  mutate(Porcentagem = (Casos / sum(Casos)) * 100) %>%
+  ungroup() %>%
+  filter(!is.na(Escolaridade))
+```
+
+Tabela 2. Proporção de casos notificados de sífilis em gestante, segundo escolaridade. Distrito Federal, 2022–2024.
+```{r tabela-escol-proporcional-gerada}
+# ── 1. FORMATAÇÃO E REESTRUTURAÇÃO DOS DADOS ──
+tabela_escol_final <- dados_proporcao_escol %>%
+  # Cria a string combinada de Texto: "Casos (Porcentagem%)"
+  # O formato de exibição padrão do Brasil utiliza vírgula para decimais
+  mutate(
+    Valor_Formatado = paste0(Casos, " (", format(round(Porcentagem, 1), nsmall = 1, decimal.mark = ","), "%)")
+  ) %>%
+  # Remove as colunas originais para manter apenas a nova variável formatada
+  select(ANO_BANCO, Escolaridade, Valor_Formatado) %>%
+  # Pivota a tabela para o formato horizontal (cruzando Escolaridade por Ano)
+  tidyr::pivot_wider(
+    names_from = ANO_BANCO, 
+    values_from = Valor_Formatado
+  )
+tabela_escol_final
+```
+
+
+------------------------------------------------------------------------
+
+# Trimestre Gestacional de Diagnóstico
+
+O trimestre gestacional de diagnóstico é um indicador sensível da oportunidade do rastreio durante o pré-natal. No período analisado, o **3º trimestre** concentrou a maior proporção de diagnósticos nos três anos, 47,2% em 2022 (618 casos), 42,2% em 2023 (704) e 48,6% em 2024 (407), o que configura diagnóstico tardio e reduz a janela de tempo para tratamento eficaz antes do parto, aumentando o risco de transmissão vertical. O **1º trimestre** respondeu por 32,4%, 35,8% e 30,2% nos respectivos anos. O aumento observado em 2023 na captação precoce (1º trimestre) não se manteve em 2024, sugerindo oscilação na qualidade do pré-natal. A proporção de registros com idade gestacional ignorada foi baixa (3,1%, 3,2% e 1,3%), indicando boa completude desse campo.
+
+
+## Proporção por trimestre gestacional
+
+```{r proporcao-trimestre, include=FALSE}
+dados_proporcao_trimestre <- banco_sifilis_21a24 %>%
+  mutate(CS_GESTANT = as.numeric(CS_GESTANT)) %>%
+  mutate(
+    Trimestre_Texto = case_match(
+      CS_GESTANT,
+      1 ~ "1º Trimestre", 2 ~ "2º Trimestre", 3 ~ "3º Trimestre",
+      4 ~ "Idade Gestacional Ignorada", 5 ~ "Em branco",
+      .default = "Em branco"
+    ),
+    Trimestre_Gestacional = factor(
+      Trimestre_Texto,
+      levels = c("1º Trimestre","2º Trimestre","3º Trimestre",
+                 "Idade Gestacional Ignorada","Em branco")
+    )
+  ) %>%
+  group_by(ANO_BANCO, Trimestre_Gestacional) %>%
+  summarise(Casos = n(), .groups = "drop_last") %>%
+  mutate(Porcentagem = (Casos / sum(Casos)) * 100) %>%
+  ungroup()
+```
+
+Figura 4. Proporção de casos notificados de sífilis em gestante, segundo trimestre gestacional de diagnóstico. Distrito Federal, 2022–2024.
+
+```{r grafico-trimestre-atualizado, fig.cap=" "}
+# Carrega as bibliotecas essenciais para manipulação e visualização de dados
+library(ggplot2)
+library(dplyr)
+
+# ── 1. DEFINIÇÃO DA PALETA INSTITUCIONAL PARA TRIMESTRE GESTACIONAL ──
+paleta_trimestre <- c(
+  "1º Trimestre"               = "#90ed7d", 
+  "2º Trimestre"               = "#8085e8",
+  "3º Trimestre"               = "#e4d354", 
+  "Idade Gestacional Ignorada" = "#f15c80",  
+  "Em branco"                  = "#BDBDBD"  
+)
+
+# ── 2. CONSTRUÇÃO DO GRÁFICO DE COLUNAS EMPILHADAS (DISTRIBUIÇÃO PROPORCIONAL) ──
+ggplot(dados_proporcao_trimestre, aes(x = factor(ANO_BANCO), y = Porcentagem, fill = Trimestre_Gestacional)) +
+  # Cria as colunas empilhadas com bordas brancas para delimitação sutil entre as fatias
+  geom_col(position = position_stack(rev = TRUE), width = 0.55, color = "white", linewidth = 0.3) +
+  
+  # CORREÇÃO DOS RÓTULOS: Exibe todas as proporções sem filtros e ajusta tamanho/cor para evitar omissões
+  geom_text(
+    aes(label = paste0(format(round(Porcentagem, 1), nsmall = 1, decimal.mark = ","), "%")),
+    position = position_stack(vjust = 0.5, rev = TRUE),
+    size = 2.8,          # Tamanho reduzido para evitar cortes ou quebras em fatias estreitas
+    color = "black",     # Fonte preta para garantir legibilidade universal em fundos claros
+    fontface = "bold"    # Estilo em negrito para destacar os valores epidemiológicos
+  ) +
+  
+  # ── 3. FORMATAÇÃO DE ESCALAS E RÓTULOS DOS EIXOS ──
+  scale_fill_manual(values = paleta_trimestre, name = NULL) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  
+  # Notas e metadados obrigatórios para garantir a transparência e reprodutibilidade na Vigilância
+  labs(
+    x = NULL, 
+    y = "Proporção (%)", 
+    caption = "DATASUS, Sinan - Dados provisórios sujeitos à atualização e extraídos em 02/05/2026."
+  ) +
+  
+  # ── 4. CUSTOMIZAÇÃO VISUAL DO TEMA MINIMALISTA ──
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.caption       = element_text(color = "#777", size = 8, hjust = 1),
+    legend.position    = "bottom",
+    legend.text        = element_text(size = 9),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_text(face = "bold", size = 11)
+  ) +
+  # Distribui as categorias da legenda horizontalmente em duas linhas na base do gráfico
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+
+------------------------------------------------------------------------
+
+# Realização de Testes Diagnósticos durante o Pré-Natal
+
+> **Teste não treponêmico (VDRL)** e **Teste treponêmico (Teste Rápido)**
+
+## Distribuição absoluta por ano
+
+A cobertura de testagem durante o pré-natal apresentou resultados distintos entre os dois tipos de teste. O **Teste Treponêmico (Teste Rápido)** alcançou proporções de realização superiores nos três anos — 90,9% em 2022 (1.190 casos), 93,6% em 2023 (1.561) e 93,0% em 2024 (779) —, com melhora progressiva entre 2022 e 2023, estabilizando-se em 2024. O **Teste Não Treponêmico (VDRL)**, utilizado tanto para triagem quanto para monitoramento de resposta ao tratamento, foi realizado em proporções menores, 84,0% em 2022 (1.100 casos), 82,1% em 2023 (1.369) e 86,2% em 2024 (722). A diferença persistente entre as proporções de realização dos dois testes, com o VDRL sistematicamente inferior, sugere lacuna no protocolo diagnóstico, uma vez que o algoritmo preconizado pelo Ministério da Saúde recomenda a realização combinada de teste treponêmico e não treponêmico para confirmação do diagnóstico e acompanhamento terapêutico. Essa diferença na realização dos dois testes compromete o manejo clínico adequado, pois o VDRL é essencial tanto para confirmação da atividade da infecção quanto para monitoramento da resposta ao tratamento, por meio da titulação.
+
+
+## Proporção comparativa de realização
+
+Figura 5. Proporção de casos notificados de sífilis em gestante, segundo realização de testes diagnósticos. Distrito Federal, 2022–2024.
+```{r grafico-testes, fig.cap=" "}
+dados_grafico_testes <- banco_sifilis_21a24 %>%
+  mutate(TPTESTE1 = as.numeric(TPTESTE1), TPCONFIRMA = as.numeric(TPCONFIRMA)) %>%
+  group_by(ANO_BANCO) %>%
+  summarise(
+    Total_Notificacoes   = n(),
+    N_N_Treponemico      = sum(TPTESTE1   %in% c(1,2), na.rm = TRUE),
+    N_Treponemico        = sum(TPCONFIRMA %in% c(1,2), na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    `Teste Não Treponêmico` = (N_N_Treponemico / Total_Notificacoes) * 100,
+    `Teste Treponêmico`     = (N_Treponemico   / Total_Notificacoes) * 100
+  ) %>%
+  select(ANO_BANCO, `Teste Não Treponêmico`, `Teste Treponêmico`) %>%
+  pivot_longer(
+    cols      = c(`Teste Não Treponêmico`, `Teste Treponêmico`),
+    names_to  = "Tipo_Teste",
+    values_to = "Proporcao"
+  )
+
+paleta_testes <- c(
+  "Teste Treponêmico"     = "#f7a35c",
+  "Teste Não Treponêmico" = "#91e8e1"
+)
+
+ggplot(dados_grafico_testes, aes(x = factor(ANO_BANCO), y = Proporcao, fill = Tipo_Teste)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6,
+           color = "white", linewidth = 0.3) +
+  geom_text(
+    aes(label = paste0(round(Proporcao, 1), "%")),
+    position = position_dodge(width = 0.7),
+    vjust = -0.5, size = 3.5, fontface = "bold", color = "#333"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 105),
+    breaks = seq(0, 100, 10),
+    labels = function(x) paste0(x, "%")
+  ) +
+  scale_fill_manual(values = paleta_testes, name = NULL) +
+  labs(x = NULL, y = "Proporção (%)", caption = "DATASUS, Sinan - Dados provisórios sujeitos à atualização e extraídos em 02/05/2026.") +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.caption       = element_text(color = "#777", size = 8, hjust = 1),
+    legend.position    = "bottom",
+    legend.text        = element_text(size = 10),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_text(face = "bold", size = 11)
+  )
+```
+
+
+------------------------------------------------------------------------
+
+# Classificação Clínica
+
+## Distribuição absoluta por ano
+
+A classificação clínica dos casos revela que a **sífilis latente** foi de longe a forma predominante em todo o período, com crescimento progressivo de 57,1% em 2022 (748 casos), 68,4% em 2023 (1.141) e 71,7% em 2024 (601). Esse achado é esperado em gestantes, uma vez que a sífilis latente é diagnosticada principalmente por rastreio sorológico rotineiro no pré-natal, sem manifestações clínicas aparentes. A sífilis **primária** foi a segunda forma mais frequente em 2022 (21,1%), mas caiu expressivamente em 2023 (12,7%) e 2024 (11,5%). A sífilis **terciária** manteve participação relevante nos três anos (11,4%, 9,2% e 8,7%), indicando casos com tempo de infecção mais longo sem diagnóstico ou tratamento prévio. A proporção de casos com classificação clínica ignorada ou em branco se manteve abaixo de 8% em todos os anos, demonstrando adequada completude desse campo.
+
+
+## Proporção por classificação clínica
+
+```{r proporcao-clinica, include=FALSE}
+dados_proporcao_clinica <- banco_sifilis_21a24 %>%
+  mutate(TPEVIDENCI = as.numeric(TPEVIDENCI)) %>%
+  mutate(
+    Clinica_Texto = case_match(
+      TPEVIDENCI,
+      1 ~ "Primária", 2 ~ "Secundária", 3 ~ "Terciária",
+      4 ~ "Latente",  9 ~ "Ignorado/Branco",
+      .default = "Ignorado/Branco"
+    ),
+    Classificacao_Clinica = factor(
+      Clinica_Texto,
+      levels = c("Primária","Secundária","Terciária","Latente","Ignorado/Branco")
+    )
+  ) %>%
+  group_by(ANO_BANCO, Classificacao_Clinica) %>%
+  summarise(Casos = n(), .groups = "drop_last") %>%
+  mutate(Porcentagem = (Casos / sum(Casos)) * 100) %>%
+  ungroup()
+```
+
+
+Figura 6. Proporção de casos notificados de sífilis em gestante, segundo classificação clínica. Distrito Federal, 2022–2024.
+
+```{r grafico-clinica-atualizado, fig.cap=" "}
+# Carrega os pacotes essenciais do ecossistema tidyverse para análise e visualização
+library(ggplot2)
+library(dplyr)
+
+# ── 1. DEFINIÇÃO DA PALETA INSTITUCIONAL PARA CLASSIFICAÇÃO CLÍNICA ──
+paleta_clinica <- c(
+  "Primária"        = "#f15c80",
+  "Secundária"      = "#8085e8",
+  "Terciária"       = "#f7a35c",
+  "Latente"         = "#90ed7d",
+  "Ignorado/Branco" = "#BDBDBD"
+)
+
+# ── 2. CONSTRUÇÃO DO GRÁFICO DE COLUNAS EMPILHADAS PROPORCIONAIS ──
+ggplot(dados_proporcao_clinica, aes(x = factor(ANO_BANCO), y = Porcentagem, fill = Classificacao_Clinica)) +
+  # Plota as colunas verticais com recuo de largura e bordas brancas para delimitar as categorias
+  geom_col(position = position_stack(rev = TRUE), width = 0.55, color = "white", linewidth = 0.3) +
+  
+  # CORREÇÃO DOS RÓTULOS: Exibe 100% dos dados textuais com formatação brasileira (vírgula)
+  geom_text(
+    aes(label = paste0(format(round(Porcentagem, 1), nsmall = 1, decimal.mark = ","), "%")),
+    position = position_stack(vjust = 0.5, rev = TRUE),
+    size = 2.8,          # Reduzido de 3.2 para 2.8 para evitar truncamento em estágios raros
+    color = "black",     # Fonte preta para garantir legibilidade e contraste universal
+    fontface = "bold"    # Formatação em negrito para facilitar a leitura rápida do gestor
+  ) +
+  
+  # ── 3. PARAMETRIZAÇÃO DE ESCALAS E EIXOS ──
+  scale_fill_manual(values = paleta_clinica, name = NULL) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  
+  # Notas de rodapé e metadados obrigatórios para garantir a transparência da Vigilância
+  labs(
+    x = NULL, 
+    y = "Proporção (%)", 
+    caption = "DATASUS, Sinan - Dados provisórios sujeitos à atualização e extraídos em 02/05/2026."
+  ) +
+  
+  # ── 4. CUSTOMIZAÇÃO DO TEMA VISUAL MINIMALISTA ──
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.caption       = element_text(color = "#777", size = 8, hjust = 1),
+    legend.position    = "bottom",
+    legend.text        = element_text(size = 9),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.x        = element_text(face = "bold", size = 11)
+  ) +
+  # Distribui as categorias da legenda horizontalmente em duas linhas no rodapé do gráfico
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+
+------------------------------------------------------------------------
+
+# Esquema de Tratamento
+
+O esquema de tratamento mais utilizado nos três anos foi a **Penicilina G benzatina 7.200.000 UI**, dose preconizada para sífilis latente tardia, terciária e latente com duração ignorada, estágio que requer esse esquema mais prolongado conforme o Protocolo Clínico e Diretrizes Terapêuticas (PCDT) do Ministério da Saúde, respondendo por 76,6% dos casos em 2022 (1.003 casos), 83,8% em 2023 (1.397) e 76,7% em 2024 (643). A Penicilina G benzatina 2.400.000 UI, dose para sífilis primária, secundária e latente recente, foi utilizada em 9,4%, 8,8% e 10,0% dos casos, respectivamente. Preocupa a proporção de casos com tratamento **não realizado**: 9,5% em 2022 (124 casos), 4,7% em 2023 (78) e 9,9% em 2024 (83). A não realização do tratamento durante a gestação aumenta substancialmente o risco de transmissão vertical e de sífilis congênita. Casos com esquema ignorado representaram menos de 2,5% em todos os anos, indicando boa completude desse campo.
+
+Esse indicador é crítico do ponto de vista da saúde pública: cada caso não tratado representa uma oportunidade perdida de prevenção da sífilis congênita. O monitoramento regular desse indicador e a garantia de abastecimento contínuo da penicilina são medidas prioritárias para a vigilância epidemiológica no DF.
+
+
+```{r tabela-esquema, include=FALSE}
+## Distribuição absoluta por ano
+tabela_esquema_dados <- banco_sifilis_21a24 %>%
+  mutate(TPESQUEMA = as.numeric(TPESQUEMA)) %>%
+  mutate(
+    Esquema_Texto = case_match(
+      TPESQUEMA,
+      1 ~ "Penicilina G benzatina 2.400.000UI",
+      2 ~ "Penicilina G benzatina 4.800.000UI",
+      3 ~ "Penicilina G benzatina 7.200.000UI",
+      4 ~ "Outro esquema",
+      5 ~ "Não realizado",
+      9 ~ "Ignorado",
+      .default = "Ignorado"
+    ),
+    Esquema_Tratamento = factor(
+      Esquema_Texto,
+      levels = c("Penicilina G benzatina 7.200.000UI",
+                 "Penicilina G benzatina 4.800.000UI",
+                 "Penicilina G benzatina 2.400.000UI",
+                 "Outro esquema","Não realizado","Ignorado")
+    )
+  )
+
+tabela_esquema_final <- tabela_esquema_dados %>%
+  janitor::tabyl(Esquema_Tratamento, ANO_BANCO) %>%
+  janitor::adorn_totals("row", name = "**Total Geral**") %>%
+  janitor::adorn_totals("col", name = "**Total Período**")
+```
+
+
+```{r proporcao-esquema, include=FALSE}
+dados_proporcao_esquema <- banco_sifilis_21a24 %>%
+  mutate(TPESQUEMA = as.numeric(TPESQUEMA)) %>%
+  mutate(
+    Esquema_Texto = case_match(
+      TPESQUEMA,
+      1 ~ "Penicilina G benzatina 2.400.000UI",
+      2 ~ "Penicilina G benzatina 4.800.000UI",
+      3 ~ "Penicilina G benzatina 7.200.000UI",
+      4 ~ "Outro esquema",
+      5 ~ "Não realizado",
+      9 ~ "Ignorado",
+      .default = "Ignorado"
+    ),
+    Esquema_Tratamento = factor(
+      Esquema_Texto,
+      levels = c("Penicilina G benzatina 7.200.000UI",
+                 "Penicilina G benzatina 4.800.000UI",
+                 "Penicilina G benzatina 2.400.000UI",
+                 "Outro esquema","Não realizado","Ignorado")
+    )
+  ) %>%
+  group_by(ANO_BANCO, Esquema_Tratamento) %>%
+  summarise(Casos = n(), .groups = "drop_last") %>%
+  mutate(Porcentagem = (Casos / sum(Casos)) * 100) %>%
+  ungroup()
+dados_proporcao_esquema
+```
+
+## Proporção por esquema de tratamento
+
+```{r tabela-esquema-proporcional-gerada}
+# ── 1. FORMATAÇÃO E REESTRUTURAÇÃO DOS DADOS DO ESQUEMA ──
+tabela_esquema_final <- dados_proporcao_esquema %>%
+  # Cria a string combinada de Texto: "Casos (Porcentagem%)"
+  # Mantém o padrão de exibição do Brasil com uma casa decimal e vírgula
+  mutate(
+    Valor_Formatado = paste0(Casos, " (", format(round(Porcentagem, 1), nsmall = 1, decimal.mark = ","), "%)")
+  ) %>%
+  # Seleciona apenas as variáveis estruturais para a montagem da tabela
+  select(ANO_BANCO, Esquema_Tratamento, Valor_Formatado) %>%
+  # Pivota a tabela para o formato horizontal (cruzando Esquema de Tratamento por Ano)
+  tidyr::pivot_wider(
+    names_from = ANO_BANCO, 
+    values_from = Valor_Formatado
+  )
+
+# Exibe a tabela final estruturada
+tabela_esquema_final
+```
+
+
+------------------------------------------------------------------------
+
+# Considerações Finais
+
+O perfil epidemiológico da sífilis em gestantes no Distrito Federal entre 2022 e 2024 aponta para um cenário de carga elevada e persistente, com **3.814 casos notificados** nos anos. Os principais achados indicam:
+
+**Perfil sociodemográfico:** a maioria dos casos concentra-se em mulheres jovens (20–29 anos), pardas e com escolaridade até o ensino médio — grupos historicamente mais vulneráveis às desigualdades no acesso à atenção básica e à informação em saúde sexual e reprodutiva.
+
+**Oportunidade diagnóstica:** o diagnóstico predominantemente no 3º trimestre gestacional, presente em mais de 40% dos casos em todos os anos, representa uma janela terapêutica estreita para a prevenção da transmissão vertical. A ampliação da captação precoce das gestantes ainda no 1º trimestre é medida prioritária.
+
+**Testagem:** a cobertura de testagem pelo Teste Rápido superou 90% nos três anos, com melhora progressiva. Contudo, a realização do VDRL, essencial para o monitoramento do tratamento, ficou entre 82% e 86%, configurando lacuna no protocolo diagnóstico.
+
+**Classificação e tratamento:** a sífilis latente respondeu por mais de dois terços dos casos em 2023 e 2024, compatível com diagnóstico por rastreio sorológico. O esquema terapêutico com Penicilina G benzatina 7.200.000 UI foi o mais utilizado, alinhado ao PCDT. A proporção de casos sem tratamento realizado, que atingiu cerca de 10% em 2022 e 2024, constitui o principal ponto de atenção para a prevenção da sífilis congênita no DF.
+
+Recomenda-se intensificar ações de busca ativa de gestantes para captação no 1º trimestre, garantir a disponibilidade contínua de penicilina benzatina nas unidades de saúde, aprimorar o preenchimento dos campos escolaridade e raça/cor nas fichas de notificação, e fortalecer a articulação entre vigilância epidemiológica e atenção primária à saúde no Distrito Federal.
+
+------------------------------------------------------------------------
+
+# Referências
+
+BRASIL. Ministério da Saúde. Boletim Epidemiológico da Sífilis. Brasília, 2024.
+
+BRASIL. Ministério da Saúde. Guia de Vigilância em Saúde. Volume único. 6ª ed. rev e atual - Brasília, 2024. 1.126 p.: il.
+
+BRASIL. Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis. Brasília, 2022. 211 p.: il.
+
+
